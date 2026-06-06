@@ -1,4 +1,5 @@
 #include "../include/graph.hpp"
+#include <iostream>
 
 int main()
 {
@@ -13,5 +14,9 @@ int main()
 
     g.printGraph();
 
-    return 0;
+    std::cout << std::endl;
+
+    g.BFS(0);
+
+    return 0;    
 }
