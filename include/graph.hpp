@@ -12,6 +12,8 @@ public:
 
     void printGraph();
 
+    void BFS(int source);
+
 private:
     int numVertices;
     std::vector<std::vector<int>> adjList;
