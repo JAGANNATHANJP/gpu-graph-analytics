@@ -1,6 +1,8 @@
 #include "../include/graph.hpp"
-#include <iostream>
+#include <iostream> 
 #include <queue>
+#include <fstream>
+#include <string>
 
 Graph::Graph(int vertices)
 {
@@ -80,4 +82,26 @@ void Graph::BFS(int source)
             << distance[i]
             << std::endl;
     }
+}
+
+void Graph::loadGraph(const std::string& filename)
+{
+    std::ifstream file(filename);
+
+    if(!file)
+    {
+        std::cerr << "Error opening file: "
+                  << filename
+                  << std::endl;
+        return;
+    }
+
+    int src, dst;
+
+    while(file >> src >> dst)
+    {
+        addEdge(src, dst);
+    }
+
+    file.close();
 }
