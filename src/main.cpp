@@ -1,5 +1,6 @@
 #include "../include/graph.hpp"
 #include <iostream>
+#include <chrono>
 
 int main()
 {
