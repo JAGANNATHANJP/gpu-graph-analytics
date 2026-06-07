@@ -1,3 +1,4 @@
+#include <string>
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
@@ -13,6 +14,8 @@ public:
     void printGraph();
 
     void BFS(int source);
+
+    void loadGraph(const std::string& filename);
 
 private:
     int numVertices;
