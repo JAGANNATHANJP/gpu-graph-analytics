@@ -110,7 +110,7 @@ void Graph::loadGraph(const std::string& filename)
 
     while(file >> src >> dst)
     {
-        addEdge(src, dst);
+        addEdge(src, dst, 1);
     }
 
     file.close();
