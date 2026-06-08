@@ -1,4 +1,5 @@
 #include <string>
+#include <utility>
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
@@ -9,7 +10,7 @@ class Graph
 public:
     Graph(int vertices);
 
-    void addEdge(int src, int dst);
+    void addEdge(int src, int dst, int weight);
 
     void printGraph();
 
@@ -19,7 +20,7 @@ public:
 
 private:
     int numVertices;
-    std::vector<std::vector<int>> adjList;
+    std::vector<std::vector<std::pair<int,int>>> adjList;
 };
 
 #endif
