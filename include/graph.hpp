@@ -16,6 +16,8 @@ public:
 
     void BFS(int source);
 
+    void Dijkstra(int source);
+
     void loadGraph(const std::string& filename);
 
 private:

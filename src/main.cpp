@@ -17,6 +17,8 @@ int main()
 
     g.BFS(0);
 
+    g.Dijkstra(0);
+
     auto end =
         std::chrono::high_resolution_clock::now();
 

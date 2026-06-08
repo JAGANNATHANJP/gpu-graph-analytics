@@ -3,6 +3,8 @@
 #include <queue>
 #include <fstream>
 #include <string>
+#include <limits>
+#include <functional>
 
 Graph::Graph(int vertices)
 {
@@ -114,4 +116,64 @@ void Graph::loadGraph(const std::string& filename)
     }
 
     file.close();
+}
+
+void Graph::Dijkstra(int source)
+{
+    std::vector<int> distance(
+        numVertices,
+        std::numeric_limits<int>::max());
+
+    distance[source] = 0;
+
+    std::priority_queue<
+        std::pair<int,int>,
+        std::vector<std::pair<int,int>>,
+        std::greater<std::pair<int,int>>
+    > pq;
+
+    pq.push({0, source});
+
+    while(!pq.empty())
+    {
+        int currentDistance =
+            pq.top().first;
+
+        int currentNode =
+            pq.top().second;
+
+        pq.pop();
+
+        for(const auto& edge : adjList[currentNode])
+        {
+            int neighbor = edge.first;
+
+            int weight = edge.second;
+
+            if(distance[currentNode] + weight
+               < distance[neighbor])
+            {
+                distance[neighbor] =
+                    distance[currentNode] + weight;
+
+                pq.push(
+                    {distance[neighbor], neighbor});
+            }
+        }
+    }
+
+    std::cout
+        << "\nShortest Distances from source "
+        << source
+        << ":\n";
+
+    for(int i = 0; i < numVertices; i++)
+    {
+        std::cout
+            << "Node "
+            << i
+            << " : "
+            << distance[i]
+            << std::endl;
+    }
 }
