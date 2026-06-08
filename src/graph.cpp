@@ -10,10 +10,11 @@ Graph::Graph(int vertices)
     adjList.resize(vertices);
 }
 
-void Graph::addEdge(int src, int dst)
+void Graph::addEdge(int src, int dst, int weight)
 {
-    adjList[src].push_back(dst);
+    adjList[src].push_back({dst, weight});
 }
+
 
 void Graph::printGraph()
 {
@@ -21,10 +22,16 @@ void Graph::printGraph()
     {
         std::cout << i << ": ";
 
-        for(int neighbor : adjList[i])
+        for(const auto & edge : adjList[i])
         {
-            std::cout << neighbor << " ";
+            std::cout
+                << "("
+                << edge.first
+                << ", "
+                << edge.second
+                << ") ";
         }
+        
 
         std::cout << std::endl;
     }
@@ -54,8 +61,10 @@ void Graph::BFS(int source)
 
         std::cout << current << " ";
 
-        for(int neighbor : adjList[current])
+        for(const auto& edge : adjList[current])
         {
+            int neighbor = edge.first;
+
             if(!visited[neighbor])
             {
                 visited[neighbor] = true;
@@ -66,6 +75,7 @@ void Graph::BFS(int source)
                 q.push(neighbor);
             }
         }
+        
     }
 
     std::cout << std::endl;
