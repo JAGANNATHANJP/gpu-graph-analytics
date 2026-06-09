@@ -177,3 +177,50 @@ void Graph::Dijkstra(int source)
             << std::endl;
     }
 }
+
+void Graph::buildCSR()
+{
+    rowOffsets.clear();
+    colIndices.clear();
+    edgeWeights.clear();
+
+    rowOffsets.push_back(0);
+
+    for(int i = 0; i < numVertices; i++)
+    {
+        for(const auto& edge : adjList[i])
+        {
+            colIndices.push_back(edge.first);
+
+            edgeWeights.push_back(edge.second);
+        }
+
+        rowOffsets.push_back(colIndices.size());
+    }
+}
+
+void Graph::printCSR()
+{
+    std::cout << "\nrowOffsets: ";
+
+    for(int value : rowOffsets)
+    {
+        std::cout << value << " ";
+    }
+
+    std::cout << "\ncolIndices: ";
+
+    for(int value : colIndices)
+    {
+        std::cout << value << " ";
+    }
+
+    std::cout << "\nedgeWeights: ";
+
+    for(int value : edgeWeights)
+    {
+        std::cout << value << " ";
+    }
+
+    std::cout << std::endl;
+}

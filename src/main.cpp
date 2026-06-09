@@ -12,6 +12,12 @@ int main()
 
     std::cout << std::endl;
 
+    g.buildCSR();
+
+    g.printCSR();
+
+    std::cout << std::endl;
+
     auto start =
         std::chrono::high_resolution_clock::now();
 
